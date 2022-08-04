@@ -8,9 +8,9 @@ from main import *
 
 def get_db_list():
     files = []
+    os.getcwd()
     for file in os.listdir(
-            os.path.join("C:" + os.sep, 'Users', 'herbe',
-                         'PycharmProjects', 'lotto')
+            os.path.join(os.getcwd())
                             ):
         if '.db' in file :
             files.append(file[:-3])
