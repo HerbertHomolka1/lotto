@@ -5,8 +5,7 @@ class games_table():
 
     @staticmethod
     def create_table(username):
-        conn = sqlite3.connect(os.path.join("C:" + os.sep, 'Users','herbe',
-                                            'PycharmProjects', 'lotto', str(username) + '.db'))
+        conn = sqlite3.connect(os.path.join(os.getcwd(), str(username) + '.db'))
         c = conn.cursor()
         try:
             c.execute('CREATE TABLE games(yournum1 INTEGER,yournum2 INTEGER,yournum3 INTEGER,yournum4 INTEGER,'
@@ -21,8 +20,7 @@ class games_table():
     @staticmethod
     def data_entry(yournum1,yournum2,yournum3,yournum4,yournum5,yournum6,yourbonus,
                    num1,num2,num3,num4,num5,num6,bonus,game,balance,username):
-        conn = sqlite3.connect(os.path.join("C:" + os.sep, 'Users','herbe',
-                                            'PycharmProjects', 'lotto', str(username) + '.db'))
+        conn = sqlite3.connect(os.path.join(os.getcwd(), str(username) + '.db'))
         c = conn.cursor()
         c.execute('INSERT INTO games VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
                   (yournum1,yournum2,yournum3,yournum4,yournum5,yournum6,yourbonus,
@@ -33,8 +31,7 @@ class games_table():
 
     @staticmethod
     def get_data(username):
-        conn = sqlite3.connect(os.path.join("C:" + os.sep, 'Users', 'herbe',
-                                            'PycharmProjects', 'lotto', str(username) + '.db'))
+        conn = sqlite3.connect(os.path.join(os.getcwd(), str(username) + '.db'))
         c = conn.cursor()
         c.execute('SELECT * FROM games ORDER BY rowid DESC LIMIT 10;')
         data = c.fetchall()
@@ -46,8 +43,7 @@ class games_table():
 class user_list():
     @staticmethod
     def create_table():
-        conn = sqlite3.connect(os.path.join("C:" + os.sep, 'Users', 'herbe',
-                                            'PycharmProjects', 'lotto', 'users' + '.db'))
+        conn = sqlite3.connect(os.path.join(os.getcwd(), 'users' + '.db'))
         c = conn.cursor()
         try:
             c.execute('CREATE TABLE IF NOT EXISTS users(user TEXT, password TEXT)')
@@ -58,8 +54,7 @@ class user_list():
 
     @staticmethod
     def data_entry(user,password):
-        conn = sqlite3.connect(os.path.join("C:" + os.sep, 'Users', 'herbe',
-                                            'PycharmProjects', 'lotto', 'users' + '.db'))
+        conn = sqlite3.connect(os.path.join(os.getcwd(), 'users' + '.db'))
         c = conn.cursor()
         c.execute('INSERT INTO users VALUES(?,?)',
                   (user,password))
@@ -69,8 +64,7 @@ class user_list():
 
     @staticmethod  # under construction
     def get_data():
-        conn = sqlite3.connect(os.path.join("C:" + os.sep, 'Users', 'herbe',
-                                            'PycharmProjects', 'lotto', 'users' + '.db'))
+        conn = sqlite3.connect(os.path.join(os.getcwd(), 'users' + '.db'))
         c = conn.cursor()
         c.execute('SELECT * FROM users ORDER BY rowid DESC LIMIT 10;') #
         data = c.fetchall()
